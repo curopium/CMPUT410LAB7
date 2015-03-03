@@ -34,6 +34,19 @@ def add_link(request):
         tags = request.POST.get("tags", "")
         title = request.POST.get("title", "")
         #TODO: code here
+    
+        tag = Tag(name = tags)
+        #tag.name = tags
+        tag.save()
+
+        link = Link(title = title, url = url)
+        #link.name = title
+        #link.url = url
+        #link.tag = tag
+        link.save()
+
+        link.tags.add(tag)
+
     return redirect(index)
 
 
